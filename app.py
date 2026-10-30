@@ -18,6 +18,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 
 # -----------------------------------------------------------------------------
@@ -25,6 +26,9 @@ from flask import Flask, jsonify, request
 # -----------------------------------------------------------------------------
 
 app = Flask(__name__)
+
+# Allow the browser dashboard (courses.html) to call this API from another origin.
+CORS(app)
 
 # Store courses.json in the same directory as this app.py file.
 DATA_FILE = Path(__file__).parent / "courses.json"
