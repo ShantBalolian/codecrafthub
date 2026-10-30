@@ -187,7 +187,7 @@
     cursor: not-allowed;
   }
   .btn-primary {
-    background: var(--primary);
+    background: #8B5CF6;
     color: var(--white);
   }
   .btn-primary:hover:not(:disabled) { background: var(--primary-dark); }
@@ -204,6 +204,16 @@
     outline: none;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4);
   }
+  .btn-success {
+    background: #F59E0B;
+    color: #1F2937;
+  }
+  .btn-success:hover:not(:disabled) { background: #D97706; }
+  .btn-success:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.4);
+  }
+
   .btn-ghost {
     background: var(--white);
     color: var(--gray-700);
@@ -818,7 +828,7 @@ function renderCourses() {
     delBtn.type = "button";
     delBtn.className = "btn-danger";
     delBtn.textContent = "Remove";
-    delBtn.addEventListener("click", () => openConfirmDelete(c));
+    delBtn.addEventListener("click", () => handleDelete(c.id));
     wrap.appendChild(editBtn);
     wrap.appendChild(delBtn);
     tdActions.appendChild(wrap);
@@ -862,7 +872,7 @@ function renderCourses() {
     mDel.type = "button";
     mDel.className = "btn-danger";
     mDel.textContent = "Remove";
-    mDel.addEventListener("click", () => openConfirmDelete(c));
+    mDel.addEventListener("click", () => handleDelete(c.id));
     actions.appendChild(mEdit);
     actions.appendChild(mDel);
     card.appendChild(actions);
@@ -997,8 +1007,12 @@ el("editForm").addEventListener("submit", async (e) => {
 });
 
 // ---- Confirm delete ----
-function openConfirmDelete(course) {
+// Called by every Remove button with the course ID. Opens the confirmation
+// dialog; the dialog's Remove button sends the DELETE request.
+function handleDelete(courseId) {
   if (state.requestInFlight) return;
+  const course = state.courses.find((c) => c.id === courseId);
+  if (!course) return;
   state.deletingId = course.id;
   el("confirmText").textContent = `Remove "${course.name}"? This cannot be undone.`;
   el("confirmModal").classList.add("active");
