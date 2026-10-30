@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "Python Basics",
+        "description": "Learn Python fundamentals including variables, loops, functions, and basic data structures",
+        "target_date": "2025-12-31",
+        "status": "In Progress",
+        "created_at": "2026-10-30T19:06:46.350970+00:00"
+    },
+    {
+        "id": 2,
+        "name": "Web Development with Flask",
+        "description": "Build web applications using Python Flask framework",
+        "target_date": "2026-02-28",
+        "status": "Not Started",
+        "created_at": "2026-10-30T19:06:46.367101+00:00"
+    },
+    {
+        "id": 3,
+        "name": "Data Science Fundamentals",
+        "description": "Introduction to data analysis, visualization, and machine learning with Python",
+        "target_date": "2026-06-30",
+        "status": "Not Started",
+        "created_at": "2026-10-30T19:06:46.383867+00:00"
+    }
+]
